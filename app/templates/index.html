@@ -9,6 +9,15 @@
         {% endif %}
     </head>
     <body>
-
+            <!-- the days news section  -->
+            <h3> News Sources </h3>
+             <ul>
+                {% for news_source in source %}
+                    <li>{{ news_source.id}}</li>
+                    <li>{{ news_source.description}}</li>
+                    <a href="{{news_source.url}}">Go to site</a>
+                {% endfor %}
+            </ul>
+    
     </body>
 </html>

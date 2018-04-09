@@ -10,11 +10,11 @@ def index():
     View root page function that returns the index page and its data
     '''
     
-     # Getting news
-    days_news = get_news('D_news')
-    print(days_news)
+     # Getting news sources
+    news_source = get_news()
+    print(news_source)
     title = 'Home - Get The News at your Convenience when they Break'
-    return render_template('index.html', title = title, D_news = days_news)
+    return render_template('index.html', title = title, source = news_source)
 
 @app.route('/news/<int:news_id>')
 def news(news_id):
@@ -24,7 +24,4 @@ def news(news_id):
     '''
 
     return render_template('news.html',id = news_id)
-
-
-from .request import get_movies
 

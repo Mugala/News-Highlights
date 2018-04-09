@@ -3,9 +3,14 @@ class News:
     News class to define News Objects
     '''
 
-    def __init__(self,source,headlines,overview,image):
-        self.source = source
-        self.headlines = headlines
-        self.overview = overview
-        self.image = 'https://image.tmdb.org/t/p/w500/'+image
+    def __init__(self,id,name,description,url,category,language,country):
+        
+        self.id = id
+        self.name = name
+        self.description = description
+        self.url = url
+        self.category = category
+        self.language = language
+        self.country = country
+      
        
