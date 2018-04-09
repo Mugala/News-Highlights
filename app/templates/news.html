@@ -17,12 +17,11 @@
             <h3> News articles </h3>
              <ul>
                 {% for articles_source in article %}
-                    <li>{{ articles_source.author}}</li>
-                    <li>{{ articles_source.title}}</li>
+
                     <li>{{ articles_source.urlToImage}}</li>
-                    <li>{{ articles_source.url}}</li>
                     <li>{{ articles_source.description}}</li>
                     <a href="{{articles_source.url}}">Read articles</a>
+                    <li>{{ articles_source.publishedAt}}</li>
                     
                 {% endfor %}
 
