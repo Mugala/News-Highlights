@@ -1,1 +1,32 @@
-<h1>NEWS {{ id }} </h1>
+{% import 'macros.html' as macro%}
+{% extends 'base.html'%}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% if title %}
+        <title> {{ title }}</title>
+        {% else %}
+        <title> Welcome to NEWS HIGHLIGHTS </title>
+        {% endif %}
+    </head>
+    <body>
+            {% block content %}
+            <!-- the days news section  -->
+            <h3> News articles </h3>
+             <ul>
+                {% for articles_source in article %}
+                    <li>{{ articles_source.author}}</li>
+                    <li>{{ articles_source.title}}</li>
+                    <li>{{ articles_source.urlToImage}}</li>
+                    <li>{{ articles_source.url}}</li>
+                    <li>{{ articles_source.description}}</li>
+                    
+                {% endfor %}
+
+                {% endblock%}
+            </ul>
+    
+    </body>
+</html>
