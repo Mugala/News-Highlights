@@ -1,9 +1,11 @@
-from flask import render_template
-from .request import get_news,get_articles
-from app import app
+from flask import render_template,request,redirect,url_for
+from . import main
+from ..request import get_news,get_articles
+from ..models import Articles
+
 
 # Views
-@app.route('/')
+@main.route('/')
 def index():
 
     '''
@@ -17,7 +19,7 @@ def index():
     return render_template('index.html', title = title, source = news_source)
 
 
-@app.route('/article/<id>')
+@main.route('/article/<id>')
 def article(id):
     '''
     View articles page function for all the articles for specific source
