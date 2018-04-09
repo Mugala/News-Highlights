@@ -1,16 +1,16 @@
 from app import app
 import urllib.request, json
-from .models import news
+from .models import News
 
 News = news.News    
 Articles = news.Articles
 
 # Getting api key
-api_key = app.config['NEWS_API_KEY']
+api_key = None
 
 #Getting the news sources and the articles base url
-base_url = app.config["NEWS_API_BASE_URL"]
-a_base_url = app.config["ARTICLES_API_BASE_URL"]
+base_url = None
+a_base_url = None
 
 def process_results(news_list):
         '''
