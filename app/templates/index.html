@@ -13,15 +13,20 @@
     </head>
     <body>
             {% block content %}
-            <!-- the days news section  -->
-            <h3> News Sources </h3>
-             <ul>
-                {% for news_source in source %}
-                    <li>{{ news_source.id}}</li>
-                    <li>{{ news_source.description}}</li>
-                    <a href="/article/{{news_source.id}}">Go To articles Page</a>
-                {% endfor %}
-
+            <div class="container">
+                <div class="row">
+                       
+                    <!-- the days news section  -->
+                    <h2> News Sources </h2>
+                    <ul>
+                        {% for news_source in source %}
+                            <li>{{ news_source.id}}</li>
+                            <li>{{ news_source.description}}</li>
+                            <a href="/article/{{news_source.id}}">Go To articles Page</a>
+                        {% endfor %}
+                
+            </div>
+            </div>   
                 {% endblock%}
             </ul>
     
