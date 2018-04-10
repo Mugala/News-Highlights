@@ -16,17 +16,18 @@
             <!-- the days news section  -->
             <h3> News articles </h3>
              <ul>
-                {% for articles_source in article %}
+                {% for article in articles %}
 
-                    <li>{{ articles_source.urlToImage}}</li>
-                    <li>{{ articles_source.description}}</li>
-                    <a href="{{articles_source.url}}">Read article</a>
-                    <li>{{ articles_source.publishedAt}}</li>
+                    <li>{{ article.title }}</li>
+                    <img src="{{ article.urlToImage }}" alt="News image">
+                    <li>{{ article.description }}</li>
+                    <a href="{{article.url}}">Read article</a>
+                    <li>{{ article.publishedAt }}</li>
                     
                 {% endfor %}
 
-                {% endblock%}
             </ul>
+            {% endblock%}
     
     </body>
 </html>

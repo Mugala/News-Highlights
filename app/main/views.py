@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for
 from . import main
 from ..request import get_news,get_articles
-from ..models import Articles
+from ..models import Article
 
 
 # Views
@@ -24,14 +24,12 @@ def article(id):
     '''
     View articles page function for all the articles for specific source
     '''
-    articles_sources = get_articles('articles')
-
 
     articles_sources = get_articles(id)
     # title = f'{article.title}'
     title = 'Home - Get The News articles'
 
-    return render_template('news.html', title=title, article = articles_sources)
+    return render_template('news.html', title=title, articles = articles_sources)
 
     
 

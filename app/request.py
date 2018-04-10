@@ -1,9 +1,6 @@
-from app import app
 import urllib.request, json
-from .models import News
+from .models import News, Article
 
-News = news.News    
-Articles = news.Articles
 
 # Getting api key
 api_key = None
@@ -11,6 +8,13 @@ api_key = None
 #Getting the news sources and the articles base url
 base_url = None
 a_base_url = None
+
+def configure_request(app):
+    global api_key,base_url,a_base_url
+    api_key = app.config['NEWS_API_KEY']
+    base_url = app.config['NEWS_API_BASE_URL'] 
+    # a_base_url = app.config['ARTICLES_API_BASE_URL'] 
+
 
 def process_results(news_list):
         '''
@@ -69,32 +73,34 @@ def process_articles(articles_list):
             news_results: A list of news objects
         '''
         articles_results = []
-        for article_item in articles_list:
-            author = news_item.get('author')
-            title = news_item.get('title')
-            description = news_item.get('description')
-            url = news_item.get('url')
-            urlToImage = news_item.get('urlToImage')
-            publishedAt = news_item.get('publishedAt')
+        for article in articles_list:
+            author = article.get('author')
+            title = article.get('title')
+            description = article.get('description')
+            url = article.get('url')
+            urlToImage = article.get('urlToImage')
+            publishedAt = article.get('publishedAt')
             
+            news_article = Article(author,title,description,url,urlToImage,publishedAt)
 
-            articles_results.append(News(author,title,description,url,urlToImage,publishedAt))
+            articles_results.append(news_article)
 
         return articles_results
 
 def get_articles(id):
-    get_articles_url = a_base_url.format(id, api_key)
+    get_articles_url = base_url.format("everything", api_key) + "&sources=" + id
     print(get_articles_url)
 
     with urllib.request.urlopen(get_articles_url) as url:
         articles_details_data = url.read()
         get_articles_response = json.loads(articles_details_data)
+        # print(get_articles_response)
 
         articles_results = None
 
         if get_articles_response['articles']:
             articles_results_list = get_articles_response['articles']
-            articles_results = process_results(articles_results_list)
+            articles_results = process_articles(articles_results_list)
 
 
 

@@ -13,7 +13,7 @@ class News:
         self.language = language
         self.country = country
       
-class Articles:
+class Article:
     '''
     News class to define Articles Objects
     '''
