@@ -1,35 +1,87 @@
-from flask import render_template,request,redirect,url_for
+from flask import render_template,redirect,request,url_for
 from . import main
-from ..request import get_news,get_articles
-from ..models import Article
+from ..request import get_news,get_articles,get_topic,search_news,headline_news
 
 
-# Views
+#views
 @main.route('/')
 def index():
+    """
+    Root page returns the home page for news HIGHLIGHTS
+    """
+    title = "Catch up with what has been happening around the globe"
+    News_sources = get_news()
 
-    '''
-    View root page function that returns the index page and its data
-    '''
-    
-     # Getting news sources
-    news_source = get_news('sources')
-    print(news_source)
-    title = 'Home - Get The News at your Convenience when they Break'
-    return render_template('index.html', title = title, source = news_source)
+    search_news = request.args.get('news_query')
 
 
-@main.route('/article/<id>')
+    if search_news:
+        return redirect(url_for('main.search',topic_news = search_news))
+    else:
+        return render_template('home.html',title=title,sources=News_sources)
+
+
+@main.route('/sources')
+def sources():
+    """
+    Page that displays the news sources as well as the link to articles and website
+    """
+    title = "Catch up with what has been happening around the globe"
+    News_sources = get_news()
+
+    search_news = request.args.get('news_query')
+
+    if search_news:
+        return redirect(url_for('main.search',topic_news = search_news))
+    else:
+        return render_template('sources.html',title=title,sources=News_sources)
+
+@main.route('/articles/<id>')
 def article(id):
     '''
-    View articles page function for all the articles for specific source
+    View function page for all the articles for a specific sources
     '''
 
     articles_sources = get_articles(id)
-    # title = f'{article.title}'
-    title = 'Home - Get The News articles'
+    title = 'News articles'
 
-    return render_template('news.html', title=title, articles = articles_sources)
+    search_news = request.args.get('news_query')
 
-    
+    if search_news:
+        return redirect(url_for('main.search',topic_news = search_news))
+    else:
+        return render_template('articles.html',title=title,articles=articles_sources)
 
+@main.route('/search/<topic_news>')
+def search(topic_news):
+    '''
+    View function to display the search results
+    '''
+
+    news_name_list = topic_news.split(' ')
+    news_name_format = '+'.join(news_name_list)
+    searched_topics = get_topic(news_name_format)
+    title = f'search results for {topic_news}'
+
+    search_news = request.args.get('news_query')
+
+    if search_news:
+        return redirect(url_for('main.search',topic_news = search_news))
+    else:
+        return render_template('search.html',news_topics = searched_topics, t =topic_news,title=title)
+
+@main.route('/headline/<topic>')
+def headlines(topic):
+    '''
+    View function to display the headlines results
+    '''
+
+    news_headlines = headline_news(topic)
+
+    search_news = request.args.get('news_query')
+    title = f'headlines for {topic}'
+
+    if search_news:
+        return redirect(url_for('main.search',topic_news = search_news))
+    else:
+        return render_template('headlines.html',headlines = news_headlines, title=title,t=topic)
