@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <h2> Headlines for {{t}} news. </h2>
+      <hr>
+{% for news in headlines %}
+      <div class="col-md-4">
+           <h3>{{ news.author}}</h3>
+             <img src="{{news.urlToImage}}" alt="News photo" height="200px", width="350px">
+           <p>{{ news.description}}</p>
+           <a href="{{news.url}}" class="btn btn-primary"> Read More...</a>
+       </div>
+{% endfor %}
+    </div>
+  </div>
+
+{% endblock %}

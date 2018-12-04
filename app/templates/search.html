@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <h2> News articles for {{t}}</h2>
+      <h3> Found {{ news_topics | count }} matches. </h3>
+      <hr>
+      {% for news in news_topics %}
+      <div class="col-md-4">
+           <h3>{{ news.author}}</h3>
+             <img src="{{news.urlToImage}}" alt="News photo" height="200px", width="350px">
+           <p>{{ news.description}}</p>
+           <a href="{{news.url}}" class="btn btn-info">Read More</a>
+       </div>
+       {% endfor %}
+    </div>
+  </div>
+
+{% endblock %}

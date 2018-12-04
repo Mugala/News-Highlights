@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+<h1 class="text-center">WELCOME TO NEWS HIGHLIGHTS</h1>
+<p class="text-center">This application is geared to help you navigate through what's happening in the news around the globe!!!</p>
+<div id="headlines">
+  <p class="text-center">Check out the latest headlines by clicking on any of the categories below...</p>
+  <div id="Category">
+    <div class="row">
+    <p class="text-center">
+      <a href="/headline/business" class="btn btn-info btn-lg">Business</a>
+      <a href="/headline/health" class="btn btn-info btn-lg">Health</a>
+      <a href="/headline/technology" class="btn btn-info btn-lg">Tech</a>
+      <a href="/headline/sports" class="btn btn-info btn-lg">Sports</a>
+      <a href="/headline/entertainment" class="btn btn-info btn-lg">Entertainment</a>
+      <a href="/headline/science" class="btn btn-info btn-lg">Science</a>
+      <a href="/headline/general" class="btn btn-info btn-lg">General</a>
+    </p>
+
+    <p class="text-center">
+      To Navigate to the various news source <a href="/sources" class="btn btn-lg btn-success">Click here!!</a>
+    </p>
+  </div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

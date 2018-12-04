@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+</div>
+<div class="container">
+<h1>NEWS HIGHLIGHTS</h1>
+ <div class="row">
+   <h2> Sources </h2>
+   {% for news in sources %}
+   <div class="col-md-4">
+        <h3>{{ news.name}}</h3>
+        <p>{{ news.description}}</p>
+        <p>Category: <i>{{ news.category}}</i></p>
+        <a href="{{news.url}}" class="btn btn-primary"> {{news.name}} Website</a>
+        <a href="/articles/{{news.id}}" class = "btn btn-success">Go To Articles</a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
