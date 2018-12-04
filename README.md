@@ -1,8 +1,8 @@
 # NEWS HIGHLIGHT
 
-#News Highlight Web application.
+## News Highlight Web application.
 
-#News Highlight is a web application that fetches information using the NEWS-API and allows users to access the currents events that are happening around the world from different sources.
+## News Highlight is a web application that fetches information using the NEWS-API and allows users to access the currents events that are happening around the world from different sources.
 
 *News Highlights* created on. 07/04/2018
 By `Levi Mugala`
